@@ -8,7 +8,7 @@ services:
     ports:
       - 6379:6379
     volumes:
-      - redis-data:/data
+      - $PWD/redis/data:/data
     networks:
       - logging
   # index, search & agregation
@@ -22,7 +22,7 @@ services:
       - 9300:9300
     volumes:
       - $PWD/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-      - "es-data:/usr/share/elasticsearch/data"
+      - $PWD/elasticsearch/data:/usr/share/elasticsearch/data
     networks:
       - logging
   # UI
@@ -53,8 +53,6 @@ services:
       - redis
 
 volumes:
-  es-data:
-    driver: local
   redis-data:
     driver: local
 

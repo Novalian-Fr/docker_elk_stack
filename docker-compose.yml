@@ -8,7 +8,7 @@ services:
     ports:
       - 6379:6379
     volumes:
-      - $PWD/redis/data:/data
+      - ./redis/data:/data
     networks:
       - logging
   # index, search & agregation
@@ -21,8 +21,8 @@ services:
       - 9200:9200
       - 9300:9300
     volumes:
-      - $PWD/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-      - $PWD/elasticsearch/data:/usr/share/elasticsearch/data
+      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./elasticsearch/data:/usr/share/elasticsearch/data
     networks:
       - logging
   # UI
@@ -32,7 +32,7 @@ services:
     ports:
       - 5601:5601
     volumes:
-      - $PWD/kibana/config/kibana.yml:/etc/kibana/kibana.yml
+      - ./kibana/config/kibana.yml:/etc/kibana/kibana.yml
     networks:
       - logging
     depends_on:
@@ -45,7 +45,7 @@ services:
     environment:
       - JAVA_OPTS=-Xms1g -Xmx1g
     volumes:
-      - $PWD/logstash/config:/config
+      - ./logstash/config:/config
     networks:
       - logging
     depends_on:
